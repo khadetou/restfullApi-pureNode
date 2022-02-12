@@ -1,0 +1,17 @@
+{
+  "name": "restfulapi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/khadetou/restfullApi-pureNode.git",
+  "author": "khadetou <khadetou96@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && node dist/index.js",
+    "dev": "nodemon src/index.ts",
+    "build": "tsc -p ."
+  },
+  "dependencies": {
+    "@types/node": "^17.0.17"
+  }
+}
