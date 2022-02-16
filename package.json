@@ -9,6 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc && node dist/index.js",
     "dev": "nodemon src/index.ts",
+    "prod": "NODE_ENV=production nodemon src/index.ts",
     "build": "tsc -p ."
   },
   "dependencies": {
