@@ -4,11 +4,26 @@ import url from 'url';
 import { StringDecoder } from 'string_decoder';
 import config from './config';
 import * as fs from 'fs';
+import { Callbacks } from './lib/interface';
+import _data from './lib/data';
 
-type Callback = (httpStatusCode: number, payload?: Object) => void;
-interface Callbacks {
-	[key: string]: (data: any, callback: Callback) => void;
-}
+//Testing
+// @Todo - Remove this
+_data.create('test', 'newFile', { foo: 'bar' }, (err) => {
+	console.log('This is the error: ', err);
+});
+
+_data.read('test', 'newFile', (err, data) => {
+	console.log(err, data);
+});
+
+_data.update('test', 'newFile', { foo: 'mar' }, (err) => {
+	console.log('This ist the error: ' + err);
+});
+
+_data.delete('test', 'newFile', (err) => {
+	console.log('This is the error: ' + err);
+});
 
 //Instanciate the HTTP Server
 
@@ -23,8 +38,8 @@ httpServer.listen(config.httpPort, () =>
 
 //Intanciate the HTTPS server
 const httpsServerOptions = {
-	key: fs.readFileSync('./https/key.pem'),
-	cert: fs.readFileSync('./https/cert.pem')
+	key: fs.readFileSync('./src/https/key.pem'),
+	cert: fs.readFileSync('./src/https/cert.pem')
 };
 const httpsServer = https.createServer(httpsServerOptions, (req, res) => {
 	unifiedServer(req, res);
@@ -110,3 +125,5 @@ handlers.notFound = (data, callback) => {
 const router: Callbacks = {
 	ping: handlers.ping
 };
+
+//
